@@ -13,7 +13,10 @@ with os.scandir() as ficheros:
 try:
     imagenes = subdirectorios.index("Imagenes")
 except:
-    makedirs("Imagenes")
+    mkdir("Imagenes")
+   
+
+
 try:
   documen = subdirectorios.index("Documentos")
 except:
@@ -21,6 +24,7 @@ except:
   mkdir("./Documentos/Pdf")
   mkdir("./Documentos/Word")
   mkdir("./Documentos/Exel")
+  mkdir("./Documentos/Powerpoint")
   
   
 try:
@@ -28,26 +32,54 @@ try:
 except:
   mkdir("Videos")
 
+
+try:
+  archivos_zip = subdirectorios.index("Zip")
+except:
+  mkdir("Zip")
+
+try:
+  archivos_Exe = subdirectorios.index("Aplicaciones")
+except:
+  mkdir("Aplicaciones")
+
+
+
 ############ MOVIENDO LOS ARCHIVOS ##################################
 
 archivos = os.listdir()
 
 for a in archivos: 
-    if a.endswith(".jpg") or a.endswith(".png"): 
+    if a.endswith(".jpg") or a.endswith(".png") or a.endswith("jpeg") or a.endswith(".gif"): 
         shutil.move(a,"Imagenes")
+
         
 for b in archivos: 
-    if b.endswith(".pdf"):   
+    if b.endswith(".pdf") or b.endswith("PDF"):   
         shutil.move(b,"./Documentos/Pdf")  
         
     elif b.endswith(".docx") or b.endswith(".doc"):
         shutil.move(b,"./Documentos/Word")
         
-    elif b.endswith(".xlsx"):
+    elif b.endswith(".xlsx") or b.endswith(".xlsm"):
         shutil.move(b,"./Documentos/Exel")
+    
+    elif b.endswith(".pptx"):
+        shutil.move(b,"./Documentos/Powerpoint")
+
 
 for c in archivos: 
     if c.endswith(".mp4"):
         shutil.move(c,"Videos")         
       
-        
+for e in archivos: 
+    if e.endswith(".exe"):
+        shutil.move(e,"Aplicaciones")  
+
+for d in archivos: 
+    if d.endswith(".zip"):
+        shutil.move(d,"Zip")     
+
+   
+       
+
